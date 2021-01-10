@@ -67,6 +67,14 @@
     <Compile Include="Migrations\202101101829295_TimeUpdate.designer.cs">
       <DependentUpon>202101101829295_TimeUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101101931266_EndTime.cs" />
+    <Compile Include="Migrations\202101101931266_EndTime.designer.cs">
+      <DependentUpon>202101101931266_EndTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101102017015_DateControl.cs" />
+    <Compile Include="Migrations\202101102017015_DateControl.designer.cs">
+      <DependentUpon>202101102017015_DateControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -93,6 +101,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101101829295_TimeUpdate.resx">
       <DependentUpon>202101101829295_TimeUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101101931266_EndTime.resx">
+      <DependentUpon>202101101931266_EndTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101102017015_DateControl.resx">
+      <DependentUpon>202101102017015_DateControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -17,7 +17,7 @@ namespace TODOList.Dal.Concrete.Framework.EntityFramework.FluentMapping
             Property(x => x.Id).HasColumnName("Id");
             Property(x => x.Title).HasColumnName("Title").HasMaxLength(100);
             Property(x => x.Description).HasColumnName("Description").HasMaxLength(500);
-            Property(x => x.StartTime).HasColumnName("StartTime");
+            Property(x => x.EndTime).HasColumnName("EndTime");
             Property(x => x.StartDate).HasColumnName("StartDate");
             Property(x => x.EndDate).HasColumnName("EndDate");
             Property(x => x.ComplationDate).HasColumnName("ComplationDate");

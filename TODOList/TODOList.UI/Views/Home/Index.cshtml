@@ -31,13 +31,12 @@
                     @Html.EditorFor(model => model.Task.StartDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                     @Html.ValidationMessageFor(model => model.Task.EndDate, "", new { @class = "text-danger" })
                     <br /><br />
-                    <p>Start Time:</p>
-                    @Html.TextBoxFor(model => model.Task.StartTime, new { type = "time" })
-                    <br /><br />
                     <p>End Date:</p>
                     @Html.EditorFor(model => model.Task.EndDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                     @Html.ValidationMessageFor(model => model.Task.EndDate, "", new { @class = "text-danger" })
                     <br /><br />
+                    <p>End Time:</p>
+                    @Html.TextBoxFor(model => model.Task.EndTime, new { type = "time" })
                     <div class="input-group-append mt-5">
                         <input type="submit" class="btn btn-success btn-sm" value="Add" id="btnSubmit" />
                     </div>
@@ -50,6 +49,7 @@
         <ul id="task-list" class="list-group">
             @foreach (var item in Model.ListTask)
             {
+
                 if (item.IsDone == true)
                 {
                     <li class="list-group-item list-group-item-success">
@@ -58,6 +58,7 @@
                             <div class="alert alert-success" role="alert">
                                 <p>Description: @item.Description</p>
                                 <p>Start Date: @item.StartDate</p>
+                                <p>End Date: @item.EndTime</p>
                                 <a href='@Url.Action("Delete",new { id = item.Id })' class="delete-item float-right">
                                     <i class="fas fa-trash"></i>
                                 </a>
@@ -70,21 +71,66 @@
                 }
                 else
                 {
-                    <li class="list-group-item list-group-item-info">
-                        <div class="alert alert-info" role="alert">
-                            <h4>Title: @item.Title</h4>
+                    if (item.EndTime.HasValue)
+                    {
+                        if (DateTime.Now >= item.EndTime.Value)
+                        {
+                            <li class="list-group-item list-group-item-danger">
+                                <div class="alert alert-danger" role="alert">
+                                    <h4>Title: @item.Title</h4>
+                                    <div class="alert alert-danger" role="alert">
+                                        <p>Description: @item.Description</p>
+                                        <p>Start Date: @item.StartDate</p>
+                                        <p>End Date: @item.EndTime</p>
+                                        <a href='@Url.Action("Delete",new { id = item.Id })' class="delete-item float-right">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <a href="/Home/Edit/@item.Id" class="delete-item float-right">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="list-group-item list-group-item-info">
+                                <div class="alert alert-info" role="alert">
+                                    <h4>Title: @item.Title</h4>
+                                    <div class="alert alert-info" role="alert">
+                                        <p>Description: @item.Description</p>
+                                        <p>Start Date: @item.StartDate</p>
+                                        <p>End Date: @item.EndTime</p>
+                                        <a href='@Url.Action("Delete",new { id = item.Id })' class="delete-item float-right">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <a href="/Home/Edit/@item.Id" class="delete-item float-right">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="list-group-item list-group-item-info">
                             <div class="alert alert-info" role="alert">
-                                <p>Description: @item.Description</p>
-                                <p>Start Date: @item.StartDate</p>
-                                <a href='@Url.Action("Delete",new { id = item.Id })' class="delete-item float-right">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="/Home/Edit/@item.Id" class="delete-item float-right">
-                                    <i class="fas fa-edit"></i>
-                                </a>
+                                <h4>Title: @item.Title</h4>
+                                <div class="alert alert-info" role="alert">
+                                    <p>Description: @item.Description</p>
+                                    <p>Start Date: @item.StartDate</p>
+                                    <p>End Date: @item.EndTime</p>
+                                    <a href='@Url.Action("Delete",new { id = item.Id })' class="delete-item float-right">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                    <a href="/Home/Edit/@item.Id" class="delete-item float-right">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    }
                 }
 
             }
@@ -92,6 +138,5 @@
 
     </div>
 </div>
-
 
 
